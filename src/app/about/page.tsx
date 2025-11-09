@@ -15,12 +15,7 @@ export default function AboutPage() {
           Kapybara Blog
         </Link>
         <nav className="flex items-center gap-4 text-sm">
-          <Link href="/" className="hover:underline">
-            Home
-          </Link>
-          <Link href="/admin/posts" className="hover:underline">
-            Dashboard
-          </Link>
+          
           <Link href="/about" className="font-semibold text-primary underline">
             About
           </Link>

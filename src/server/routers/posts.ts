@@ -38,9 +38,17 @@ getBySlug: publicProcedure
   .input(z.object({ slug: z.string() }))
   .query(async ({ input }) => {
     try {
-      const rows = await db.select().from(posts).where(eq(posts.slug, input.slug));
-      const post = rows[0];
-      if (!post) return null;
+     console.log("🧭 getBySlug called with slug:", input.slug);
+
+const rows = await db.select().from(posts);
+console.log("📜 All slugs in DB:", rows.map((p) => p.slug));
+
+const post = rows.find((p) => p.slug === input.slug);
+if (!post) {
+  console.log("❌ No matching post found for slug:", input.slug);
+  return null;
+}
+
 
       const links = await db
         .select()
