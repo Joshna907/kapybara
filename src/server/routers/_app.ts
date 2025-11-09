@@ -1,6 +1,6 @@
 import { router } from "../trpc";
 import { postRouter } from "./posts";
-import { categoryRouter } from "./category";
+import { categoryRouter } from "./categories";
 
 export const appRouter = router({
   post: postRouter,
