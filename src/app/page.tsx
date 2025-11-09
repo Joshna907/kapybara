@@ -191,14 +191,8 @@ Brand storytelling is a powerful way for companies to connect with audiences on 
             <Link href="/" className="hover:text-indigo-500 transition">
               Home
             </Link>
-            <Link href="/blogs" className="hover:text-indigo-500 transition">
-              Blogs
-            </Link>
             <Link href="/about" className="hover:text-indigo-500 transition">
               About
-            </Link>
-            <Link href="/contact" className="hover:text-indigo-500 transition">
-              Contact
             </Link>
           </nav>
 
