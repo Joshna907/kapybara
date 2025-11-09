@@ -183,7 +183,7 @@ export default function AdminPostsPage() {
 
   return (
     <div className="min-h-screen bg-muted/30 pb-20 relative">
-      {/* ✅ Notification */}
+      {/*  Notification */}
       {showNotification && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -195,20 +195,20 @@ export default function AdminPostsPage() {
         </motion.div>
       )}
 
-      {/* ✅ Header */}
+      {/*  Header */}
       <div className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
         <Button variant="outline" onClick={() => resetForm()}>
           Cancel
         </Button>
-        <Button onClick={handleSubmit} disabled={createPost.isLoading}>
-          {createPost.isLoading || updatePost.isLoading ? (
+        <Button onClick={handleSubmit} disabled={createPost.isPending}>
+          {createPost.isPending || updatePost.isPending ? (
             <Loader2 className="w-4 h-4 animate-spin mr-2" />
           ) : null}
           {editingPost ? "Update" : "Publish"}
         </Button>
       </div>
 
-      {/* ✅ Form */}
+      {/*  Form */}
       <div className="max-w-6xl mx-auto px-6 mb-16">
         <motion.div
           layout
