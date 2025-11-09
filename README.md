@@ -114,9 +114,9 @@ All routers are combined in `appRouter` and exposed to the client using tRPC Rea
 * Share buttons are basic; full social integration is deferred.
 * Minimal state management: React Query handles most data fetching; Zustand is used for global UI state only.
 
----
+
 
 ## Time Spent
 
 ~30 hours building frontend, backend, and deployment.
-```
+
