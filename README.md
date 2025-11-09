@@ -1,4 +1,3 @@
-Got it! Here’s a fully **copy-paste-ready** `README.md` you can directly use in your GitHub repo:
 
 ````markdown
 # Kapybara - Blogging Platform
