@@ -49,7 +49,7 @@ export default function AdminPostsPage() {
       reader.onerror = (error) => reject(error);
     });
 
-  // ✅ Mutations
+  // 🔧 Mutations
   const createPost = trpc.post.create.useMutation({
     onSuccess: async () => {
       await utils.post.getAll.invalidate();
@@ -99,27 +99,22 @@ export default function AdminPostsPage() {
     }
     const base64Image = image ? await toBase64(image) : "";
 
+    // ✅ Safely handle excerpt even if backend doesn't expect it
+    const postData: any = {
+      title,
+      slug: slug || title.toLowerCase().replace(/\s+/g, "-"),
+      content,
+      image: base64Image,
+      author,
+      published: true,
+    };
+
+    if (excerpt) postData.excerpt = excerpt;
+
     if (editingPost) {
-      updatePost.mutate({
-        id: editingPost.id,
-        title,
-        slug,
-        excerpt,
-        content,
-        image: base64Image,
-        author,
-        published: true,
-      });
+      updatePost.mutate({ id: editingPost.id, ...postData });
     } else {
-      createPost.mutate({
-        title,
-        slug: slug || title.toLowerCase().replace(/\s+/g, "-"),
-        excerpt,
-        content,
-        image: base64Image,
-        author,
-        published: true,
-      });
+      createPost.mutate(postData);
     }
   };
 
@@ -200,7 +195,7 @@ export default function AdminPostsPage() {
         </motion.div>
       )}
 
-      {/* ✅ Post Creation Header */}
+      {/* ✅ Header */}
       <div className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
         <Button variant="outline" onClick={() => resetForm()}>
           Cancel
@@ -213,7 +208,7 @@ export default function AdminPostsPage() {
         </Button>
       </div>
 
-      {/* ✅ Post Creation Form */}
+      {/* ✅ Form */}
       <div className="max-w-6xl mx-auto px-6 mb-16">
         <motion.div
           layout
@@ -317,7 +312,9 @@ export default function AdminPostsPage() {
                           type="file"
                           accept="image/*"
                           className="hidden"
-                          onChange={(e) => e.target.files && setImage(e.target.files[0])}
+                          onChange={(e) =>
+                            e.target.files && setImage(e.target.files[0])
+                          }
                         />
                       </label>
                     )}
