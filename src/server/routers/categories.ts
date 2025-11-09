@@ -58,6 +58,14 @@ export const categoryRouter = router({
         });
       }
     }),
+  update: publicProcedure
+    .input(z.object({ id: z.number(), name: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      await ctx.db
+        .update(categories)
+        .set({ name: input.name })
+        .where(eq(categories.id, input.id));
+    }),
 
   // Delete category
   delete: publicProcedure
